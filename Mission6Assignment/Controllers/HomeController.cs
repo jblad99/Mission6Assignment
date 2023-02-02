@@ -25,13 +25,13 @@ namespace Mission6Assignment.Controllers
         }
 
         [HttpGet]
-        public IActionResult DatingApplication()
+        public IActionResult MoviesForm()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult DatingApplication(MoviesResponse mr)
+        public IActionResult MoviesForm(MoviesResponse mr)
         {
             blahContext.Add(mr);
             blahContext.SaveChanges();
