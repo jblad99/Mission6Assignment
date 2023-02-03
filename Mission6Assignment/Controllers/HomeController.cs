@@ -14,12 +14,22 @@ namespace Mission6Assignment.Controllers
         private readonly ILogger<HomeController> _logger;
         private MoviesContext blahContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MoviesContext someName)
         {
             _logger = logger;
+            blahContext = someName;
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Podcasts()
+        {
+            return View();
+        }
+        public IActionResult Confirmation()
         {
             return View();
         }
