@@ -12,8 +12,6 @@ namespace Mission6Assignment.Models
         [Required]
         public int MovieId { get; set; }
         [Required]
-        public string Category { get; set; }
-        [Required]
         public string Title { get; set; }
         [Required]
         public int Year { get; set; }
@@ -26,6 +24,10 @@ namespace Mission6Assignment.Models
         public string LentTo { get; set; }
         [StringLength(25)]
         public string Notes { get; set; }
+
+        // Build foreign Key Relationship
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
     }
 }

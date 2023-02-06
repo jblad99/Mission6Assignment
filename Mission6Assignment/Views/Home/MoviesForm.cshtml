@@ -7,8 +7,14 @@
 <h1>Fill Out Movie Form to Add a Movie</h1>
 <div>
     <form method="post">
-        <label asp-for="Category">Category:</label>
-        <input asp-for="Category" /><br />
+        <label asp-for="CategoryId">Major:</label>
+        <select asp-for="CategoryId">
+            <option value="">Select a Major</option>
+            @foreach (Category c in ViewBag.Category)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select><br />
 
         <label asp-for="Title">Title:</label>
         <input asp-for="Title" /><br />

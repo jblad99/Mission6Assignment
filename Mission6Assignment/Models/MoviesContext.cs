@@ -15,15 +15,30 @@ namespace Mission6Assignment.Models
             }
 
             //Set up set of data called responses, a set of responses from the database
-            public DbSet<MoviesResponse> responses { get; set; }
+            public DbSet<MoviesResponse> Responses { get; set; }
+            public DbSet<Category> Category { get; set; }
 
-            protected override void OnModelCreating(ModelBuilder mb)
+
+
+        protected override void OnModelCreating(ModelBuilder mb)
             {
+            mb.Entity<Category>().HasData(
+                new Category { CategoryId = 1, CategoryName = "Action" },
+                new Category { CategoryId = 2, CategoryName = "Adventure" },
+                new Category { CategoryId = 3, CategoryName = "Drama" },
+                new Category { CategoryId = 4, CategoryName = "Comedy" },
+                new Category { CategoryId = 4, CategoryName = "Family" },
+                new Category { CategoryId = 4, CategoryName = "Sports" },
+                new Category { CategoryId = 4, CategoryName = "Thriller" },
+                new Category { CategoryId = 4, CategoryName = "Fantasy" },
+                new Category { CategoryId = 4, CategoryName = "Mystery" }
+            );
+
             mb.Entity<MoviesResponse>().HasData(
                 new MoviesResponse
                 {
                     MovieId = 1,
-                    Category = "Action",
+                    CategoryId = 1,
                     Title = "Skyfall",
                     Year = 2012,
                     Director = "Sam Mendes",
@@ -33,7 +48,7 @@ namespace Mission6Assignment.Models
                 new MoviesResponse
                 {
                     MovieId = 2,
-                    Category = "Drama",
+                    CategoryId = 3,
                     Title = "The Pursuit of Happyness",
                     Year = 2006,
                     Director = "Gabriele Muccino",
@@ -43,7 +58,7 @@ namespace Mission6Assignment.Models
                 new MoviesResponse
                 {
                     MovieId = 3,
-                    Category = "Action/Sci-fi",
+                    CategoryId = 1,
                     Title = "Spider-Man: No Way Home",
                     Year = 2021,
                     Director = "Jon Watts",

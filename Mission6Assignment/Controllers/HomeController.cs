@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission6Assignment.Models;
 using System;
@@ -11,13 +12,11 @@ namespace Mission6Assignment.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private MoviesContext blahContext { get; set; }
+        private MoviesContext mContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, MoviesContext someName)
+        public HomeController(MoviesContext someName)
         {
-            _logger = logger;
-            blahContext = someName;
+            mContext = someName;
         }
 
         public IActionResult Index()
@@ -37,26 +36,71 @@ namespace Mission6Assignment.Controllers
         [HttpGet]
         public IActionResult MoviesForm()
         {
+            ViewBag.Categories = mContext.Category.ToList();
+
             return View();
         }
 
         [HttpPost]
         public IActionResult MoviesForm(MoviesResponse mr)
         {
-            blahContext.Add(mr);
-            blahContext.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                mContext.Add(mr);
+                mContext.SaveChanges();
 
             return View("Confirmation", mr);
         }
-        public IActionResult Privacy()
+        else
+            {
+                ViewBag.Categories = mContext.Category.ToList();
+
+                return View();
+            }
+        }
+        public IActionResult MoviesList()
         {
-            return View();
+            var applications = mContext.Responses
+                .Include(x => x.Category)
+                //.Where(x => x.CreeperStalker == false)
+                .OrderBy(x => x.Title)
+                .ToList();
+
+            return View(applications);
+        }
+        [HttpGet]
+        public IActionResult Edit(int movieid)
+        {
+            ViewBag.Categories = mContext.Category.ToList();
+
+            var movie = mContext.Responses.Single(x => x.MovieId == movieid);
+
+            return View("MoviesForm", movie);
+        }
+        [HttpPost]
+        public IActionResult Edit(MoviesResponse blah)
+        {
+            //Using this to update the database
+            mContext.Update(blah);
+            mContext.SaveChanges();
+
+            return RedirectToAction("MoviesList");
+        }
+        [HttpGet]
+        public IActionResult Delete(int movieid)
+        {
+            var movie = mContext.Responses.Single(x => x.MovieId == movieid);
+
+            return View(movie);
+        }
+        [HttpPost]
+        public IActionResult Delete(MoviesResponse mr)
+        {
+            mContext.Responses.Remove(mr);
+            mContext.SaveChanges();
+
+            return RedirectToAction("MoviesList");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
