@@ -4,9 +4,15 @@
 
 @model Mission6Assignment.Models.MoviesResponse
 
+<!-- This form is used to fill out a new movie and add the movie to the database. -->
+
 <h1>Fill Out Movie Form to Add a Movie</h1>
 <div>
     <form method="post">
+
+        <!-- Data validation -->
+        <div asp-validation-summary="All"></div>
+
         <label asp-for="CategoryId">Category:</label>
         <select asp-for="CategoryId">
             <option value="">Select a Category</option>

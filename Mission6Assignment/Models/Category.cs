@@ -8,6 +8,7 @@ namespace Mission6Assignment.Models
 {
     public class Category
     {
+        //This is the model class for Category which will be a foreign key for the MoviesResponse model.
         [Key]
         [Required]
         public int CategoryId { get; set; }

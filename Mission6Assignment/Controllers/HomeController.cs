@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Contains all of the routing for the different pages, including the GET and POST methods
+
 namespace Mission6Assignment.Controllers
 {
     public class HomeController : Controller
@@ -36,6 +38,7 @@ namespace Mission6Assignment.Controllers
         [HttpGet]
         public IActionResult MoviesForm()
         {
+            //Includes the separate categories class in the MoviesForm view
             ViewBag.Categories = mContext.Category.ToList();
 
             return View();
@@ -46,6 +49,7 @@ namespace Mission6Assignment.Controllers
         {
             if (ModelState.IsValid)
             {
+                //if valid, saves changes to the database
                 mContext.Add(mr);
                 mContext.SaveChanges();
 
@@ -96,6 +100,7 @@ namespace Mission6Assignment.Controllers
         [HttpPost]
         public IActionResult Delete(MoviesResponse mr)
         {
+            //Delete a movie from the database
             mContext.Responses.Remove(mr);
             mContext.SaveChanges();
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mission6Assignment.Models
 {
+    // Contains the model class for adding a movie as well as the foreign key Category class.
     public class MoviesResponse
     {
         [Key]

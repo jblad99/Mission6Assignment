@@ -22,6 +22,7 @@ namespace Mission6Assignment.Models
 
         protected override void OnModelCreating(ModelBuilder mb)
             {
+            // Seeding for different movie categories which will be populated in a dropdown list.
             mb.Entity<Category>().HasData(
                 new Category { CategoryId = 1, CategoryName = "Action" },
                 new Category { CategoryId = 2, CategoryName = "Adventure" },
@@ -36,6 +37,7 @@ namespace Mission6Assignment.Models
 
             mb.Entity<MoviesResponse>().HasData(
                 new MoviesResponse
+                //Seeding for movies in the database.
                 {
                     MovieId = 1,
                     CategoryId = 1,
