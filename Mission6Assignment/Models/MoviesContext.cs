@@ -27,11 +27,11 @@ namespace Mission6Assignment.Models
                 new Category { CategoryId = 2, CategoryName = "Adventure" },
                 new Category { CategoryId = 3, CategoryName = "Drama" },
                 new Category { CategoryId = 4, CategoryName = "Comedy" },
-                new Category { CategoryId = 4, CategoryName = "Family" },
-                new Category { CategoryId = 4, CategoryName = "Sports" },
-                new Category { CategoryId = 4, CategoryName = "Thriller" },
-                new Category { CategoryId = 4, CategoryName = "Fantasy" },
-                new Category { CategoryId = 4, CategoryName = "Mystery" }
+                new Category { CategoryId = 5, CategoryName = "Family" },
+                new Category { CategoryId = 6, CategoryName = "Sports" },
+                new Category { CategoryId = 7, CategoryName = "Thriller" },
+                new Category { CategoryId = 8, CategoryName = "Fantasy" },
+                new Category { CategoryId = 9, CategoryName = "Mystery" }
             );
 
             mb.Entity<MoviesResponse>().HasData(

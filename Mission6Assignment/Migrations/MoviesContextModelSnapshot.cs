@@ -15,15 +15,75 @@ namespace Mission6Assignment.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.22");
 
+            modelBuilder.Entity("Mission6Assignment.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Action"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Adventure"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Drama"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Family"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            CategoryName = "Sports"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            CategoryName = "Thriller"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            CategoryName = "Fantasy"
+                        },
+                        new
+                        {
+                            CategoryId = 9,
+                            CategoryName = "Mystery"
+                        });
+                });
+
             modelBuilder.Entity("Mission6Assignment.Models.MoviesResponse", b =>
                 {
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -52,13 +112,15 @@ namespace Mission6Assignment.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.ToTable("responses");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Responses");
 
                     b.HasData(
                         new
                         {
                             MovieId = 1,
-                            Category = "Action",
+                            CategoryId = 1,
                             Director = "Sam Mendes",
                             Edited = false,
                             Rating = "PG-13",
@@ -68,7 +130,7 @@ namespace Mission6Assignment.Migrations
                         new
                         {
                             MovieId = 2,
-                            Category = "Drama",
+                            CategoryId = 3,
                             Director = "Gabriele Muccino",
                             Edited = false,
                             Rating = "PG-13",
@@ -78,13 +140,22 @@ namespace Mission6Assignment.Migrations
                         new
                         {
                             MovieId = 3,
-                            Category = "Action/Sci-fi",
+                            CategoryId = 1,
                             Director = "Jon Watts",
                             Edited = false,
                             Rating = "PG-13",
                             Title = "Spider-Man: No Way Home",
                             Year = 2021
                         });
+                });
+
+            modelBuilder.Entity("Mission6Assignment.Models.MoviesResponse", b =>
+                {
+                    b.HasOne("Mission6Assignment.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

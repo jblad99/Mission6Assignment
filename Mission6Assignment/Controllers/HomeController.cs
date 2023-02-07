@@ -60,13 +60,13 @@ namespace Mission6Assignment.Controllers
         }
         public IActionResult MoviesList()
         {
-            var applications = mContext.Responses
+            var movies = mContext.Responses
                 .Include(x => x.Category)
                 //.Where(x => x.CreeperStalker == false)
                 .OrderBy(x => x.Title)
                 .ToList();
 
-            return View(applications);
+            return View(movies);
         }
         [HttpGet]
         public IActionResult Edit(int movieid)
