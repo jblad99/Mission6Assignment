@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mission6Assignment.Models
 {
+    // Contains the model class for adding a movie and parameters.
     public class MoviesResponse
     {
         [Key]

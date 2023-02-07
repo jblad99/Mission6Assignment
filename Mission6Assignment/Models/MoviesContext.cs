@@ -22,6 +22,7 @@ namespace Mission6Assignment.Models
             mb.Entity<MoviesResponse>().HasData(
                 new MoviesResponse
                 {
+                    //Seeding for movies in the database.
                     MovieId = 1,
                     Category = "Action",
                     Title = "Skyfall",

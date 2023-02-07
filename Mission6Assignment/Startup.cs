@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Mission6Assignment
 {
+    //Connection to the database takes place here.
     public class Startup
     {
         public Startup(IConfiguration configuration)

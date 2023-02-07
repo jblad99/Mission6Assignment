@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mission6Assignment.Controllers
 {
+    //Contains all of the routing for the different pages, including the GET and POST methods
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -43,6 +44,7 @@ namespace Mission6Assignment.Controllers
         [HttpPost]
         public IActionResult MoviesForm(MoviesResponse mr)
         {
+            //Adds a record to the database
             blahContext.Add(mr);
             blahContext.SaveChanges();
 
