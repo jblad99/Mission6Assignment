@@ -45,10 +45,17 @@ namespace Mission6Assignment.Controllers
         public IActionResult MoviesForm(MoviesResponse mr)
         {
             //Adds a record to the database
-            blahContext.Add(mr);
-            blahContext.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                blahContext.Add(mr);
+                blahContext.SaveChanges();
 
-            return View("Confirmation", mr);
+                return View("Confirmation", mr);
+            }
+            else
+            {
+                return View();
+            }
         }
         public IActionResult Privacy()
         {
